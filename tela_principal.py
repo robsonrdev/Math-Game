@@ -22,10 +22,10 @@ def frameGenerico():
 
     return root
 
-    root = frameGenerico()
-   
+# Criar a janela principal (root) chamando a função frameGenerico fora da função
+root = frameGenerico()
 
-    try:
-        root.mainloop()
-    except Exception as e:
-        print(f"Erro durante a execução: {e}")
+try:
+    root.mainloop()
+except Exception as e:
+    print(f"Erro durante a execução: {e}")
