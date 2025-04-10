@@ -1,7 +1,9 @@
 import random
+from tela_instrucoes import *
+
 
 num1 = random.randint(0,9)
-num2 = random.randint(2,8)
+num2 = random.randint(0,9)
 
 operador = ["+", "-", "*", "/"]
 
@@ -18,13 +20,3 @@ elif op_escolhido == "/":
     
 else:
     resposta = num1 * num2
-    
-print(f"{num1} {op_escolhido} {num2} = ?")
-
-user_resp = int(input("Qual a sua resposta \n"))
-
-if user_resp != resposta:
-    print(f"Você errou {resposta}")
-
-else:
-    print("Você acertou!")
