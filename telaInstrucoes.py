@@ -4,11 +4,18 @@ from tkinter import messagebox
 
 # Variáveis globais para atualizar depois
 labels = {}
+pontos = 0
+partida = 0
+ja_marcou = False
+
 
 def gerar_nova_questao():
-    global op_escolhido
+    global op_escolhido, partida, ja_marcou
+    ja_marcou = False
+    partida += 1
     num1, num2, op_escolhido, resposta = gerar_nova_operacao()
     
+    tk.Label(inicio, text=f"Partida: {partida}", font="Arial 10", bg='#000040', fg="white").place(x=300, y=50)
     labels["num1"].config(text=num1, bg='#000040', fg="white")
     labels["num2"].config(text=num2, bg='#000040', fg="white")
     labels["resposta"].config(text=resposta, bg='#000040', fg="white")
@@ -20,10 +27,10 @@ def gerar_nova_questao():
 def comecaJogo():  
     frame = tk.Frame(master=inicio, width=800, height=600, bg='#000040')
     frame.place(x=0, y=0)
-
+    global pontos
     rodape= tk.Label(frame, text="Desenvolvido por: Robson Rodrigues, Luiz Fernando e Italo Sales (Senai Betim 2025)", font="Arial 10", bg='#000040', fg="white").place(x=150, y=575)
-    tk.Label(frame, text="Pontuação = 0", font="Arial 10", bg='#000040', fg="white").place(x=200, y=50)
-    tk.Label(frame, text="Partida= 0", font="Arial 10", bg='#000040', fg="white").place(x=300, y=50)
+    tk.Label(frame, text=f"Pontos :{pontos}", font="Arial 10", bg='#000040', fg="white").place(x=200, y=50)
+    tk.Label(frame, text=f"Partida: {partida}", font="Arial 10", bg='#000040', fg="white").place(x=300, y=50)
     tk.Label(frame, text="Tempo= 00:00", font="Arial 10", bg='#000040', fg="white").place(x=370, y=50)
     tk.Button(frame, text="Para", font="Arial 10", bg='white', fg="black").place(x=480, y=50)
 
@@ -54,36 +61,87 @@ def comecaJogo():
     # Botão para gerar nova questão
     tk.Button(frame, text="Nova Questão", font="Arial 12", command=gerar_nova_questao, bg='#02476f', fg='white').place(x=350, y=400)
 
-# def mostrar_resultado(acertou):
-#     if acertou:
-#         tk.Label(inicio, text="Acertou", font="Arial 12", fg="green")
-#     else:
-#      tk.Label(inicio, text="Errou", font="Arial 12", fg="red").place(x=600, y=300)
-#     #tk.Label(inicio, text=msg, font="Arial 12", fg="green" if acertou else "red").place(x=600, y=300)
 
 def mais():
+    global pontos, ja_marcou
     if op_escolhido != '+':
         certo = tk.Label(inicio, text="Errou", font="Arial 15", fg="red", bg='#000040').place(x=600, y=300)
+        #if/else para tirar os pontos se for maior que zero
+        if ja_marcou == False:
+         if pontos == 0:
+             pontos = pontos
+             ja_marcou == True
+         else:
+            pontos -= 1
+            ja_marcou = True
+        tk.Label(inicio, text=f'{pontos}', font="Arial 10", bg='#000040', fg="white").place(x=250, y=50)
     else:
       errado = tk.Label(inicio, text="Acertou", font="Arial 15", fg="green", bg='#000040').place(x=600, y=300)
+      if ja_marcou == False:
+          pontos+=1
+          ja_marcou = True
+      tk.Label(inicio, text=f'{pontos}', font="Arial 10", bg='#000040', fg="white").place(x=250, y=50)
+      
 def menos():
+    global pontos, ja_marcou
     if op_escolhido != '-':
         certo = tk.Label(inicio, text="Errou", font="Arial 15", fg="red", bg='#000040').place(x=600, y=300)
+        #if/else para tirar os pontos se for maior que zero
+        if ja_marcou == False:
+         if pontos == 0:
+             pontos = pontos
+             ja_marcou == True
+         else:
+            pontos -= 1
+            ja_marcou = True
+        tk.Label(inicio, text=f'{pontos}', font="Arial 10", bg='#000040', fg="white").place(x=250, y=50)
     else:
       errado = tk.Label(inicio, text="Acertou", font="Arial 15", fg="green", bg='#000040').place(x=600, y=300)
-
+      if ja_marcou == False:
+          pontos+=1
+          ja_marcou = True
+      tk.Label(inicio, text=f'{pontos}', font="Arial 10", bg='#000040', fg="white").place(x=250, y=50) 
+       
 def mult():
-    if op_escolhido != '*':
+   global pontos, ja_marcou
+   if op_escolhido != '*':
         certo = tk.Label(inicio, text="Errou", font="Arial 15", fg="red", bg='#000040').place(x=600, y=300)
-    else:
+        #if/else para tirar os pontos se for maior que zero
+        if ja_marcou == False:
+         if pontos == 0:
+             pontos = pontos
+             ja_marcou == True
+         else:
+            pontos -= 1
+            ja_marcou = True
+        tk.Label(inicio, text=f'{pontos}', font="Arial 10", bg='#000040', fg="white").place(x=250, y=50)
+   else:
       errado = tk.Label(inicio, text="Acertou", font="Arial 15", fg="green", bg='#000040').place(x=600, y=300)
-
-
+      if ja_marcou == False:
+          pontos+=1
+          ja_marcou = True
+      tk.Label(inicio, text=f'{pontos}', font="Arial 10", bg='#000040', fg="white").place(x=250, y=50)
+      
 def dividir():
+    global pontos, ja_marcou
     if op_escolhido != '/':
         certo = tk.Label(inicio, text="Errou", font="Arial 15", fg="red", bg='#000040').place(x=600, y=300)
+        #if/else para tirar os pontos se for maior que zero
+        if ja_marcou == False:
+         if pontos == 0:
+             pontos = pontos
+             ja_marcou == True
+         else:
+            pontos -= 1
+            ja_marcou = True
+        tk.Label(inicio, text=f'{pontos}', font="Arial 10", bg='#000040', fg="white").place(x=250, y=50)
     else:
       errado = tk.Label(inicio, text="Acertou", font="Arial 15", fg="green", bg='#000040').place(x=600, y=300)
+      if ja_marcou == False:
+          pontos+=1
+          ja_marcou = True
+      tk.Label(inicio, text=f'{pontos}', font="Arial 10", bg='#000040', fg="white").place(x=250, y=50)
+    
 
 
 def funcao_fechar():
