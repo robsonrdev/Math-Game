@@ -16,7 +16,7 @@ def gerar_nova_questao():
     ja_marcou = False
     partida += 1
 
-    if partida > 20:
+    if partida > 3:
         final_jogo()
         return
 
@@ -29,14 +29,14 @@ def gerar_nova_questao():
     labels["sinal"].config(text="?")
 
 def fim_do_tempo():
-    frame_fim = tk.Frame(master=inicio, width=800, height=600, bg="darkred")
-    frame_fim.place(x=0, y=0)
+    frame_final = tk.Frame(inicio, width=800, height=600, bg="#001f3f")
+    frame_final.place(x=0, y=0)
 
-    tk.Label(frame_fim, text=" O tempo acabou!",height=800, width=600, font=("Arial", 30, "bold"), fg="white", bg="red").pack(pady=50)
-    tk.Label(frame_fim, text=f"Você marcou {pontos} ponto(s)", font=("Arial", 20), fg="white", bg="red").pack(pady=10)
+    tk.Label(frame_final, text="Fim de Jogo", font=("Arial", 30, "bold"), fg="white", bg="#001f3f").place(x=250, y=180)
+    tk.Label(frame_final, text=f"Você marcou {pontos} ponto(s)!", font=("Arial", 20), fg="white", bg="#001f3f").place(x=230, y=150)
 
-    tk.Button(frame_fim, text="Jogar Novamente", font=("Arial", 14), bg="#02476f", fg="white", command=recomecar).pack(pady=20)
-    tk.Button(frame_fim, text="Sair", font=("Arial", 14), bg="#800000", fg="white", command=fechar_jogo).pack(pady=10)
+    tk.Button(frame_final, text="Jogar Novamente", font=("Arial", 14), bg="#02476f", fg="white", command=recomecar).place(x=300, y=250)
+    tk.Button(frame_final, text="Sair", font=("Arial", 14), bg="#800000", fg="white", command=fechar_jogo).place(x=355, y=290)
 
 def atualizar_tempo():
     global tempo_restante
@@ -65,14 +65,14 @@ def atualizar_placar():
     partida_label.config(text=f"Partida: {partida}")
 
 def final_jogo():
-    frame_final = tk.Frame(master=inicio, width=800, height=600, bg="green")
+    frame_final = tk.Frame(inicio, width=800, height=600, bg="#001f3f")
     frame_final.place(x=0, y=0)
 
-    tk.Label(frame_final, text="Fim de Jogo",height=800, width=600, font=("Arial", 30, "bold"), fg="white", bg="#001f3f").pack(pady=50)
-    tk.Label(frame_final, text=f"Você marcou {pontos} ponto(s)!", font=("Arial", 20), fg="white", bg="#001f3f").pack(pady=10)
+    tk.Label(frame_final, text="Fim de Jogo", font=("Arial", 30, "bold"), fg="white", bg="#001f3f").place(x=250, y=180)
+    tk.Label(frame_final, text=f"Você marcou {pontos} ponto(s)!", font=("Arial", 20), fg="white", bg="#001f3f").place(x=230, y=150)
 
-    tk.Button(frame_final, text="Jogar Novamente", font=("Arial", 14), bg="#02476f", fg="white", command=recomecar).pack(pady=20)
-    tk.Button(frame_final, text="Sair", font=("Arial", 14), bg="#800000", fg="white", command=fechar_jogo).pack(pady=10)
+    tk.Button(frame_final, text="Jogar Novamente", font=("Arial", 14), bg="#02476f", fg="white", command=recomecar).place(x=300, y=250)
+    tk.Button(frame_final, text="Sair", font=("Arial", 14), bg="#800000", fg="white", command=fechar_jogo).place(x=355, y=290)
 
 def recomecar():
     global pontos, partida, tempo_restante
